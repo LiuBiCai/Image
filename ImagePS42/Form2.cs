@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace ImagePS42
@@ -16,7 +17,7 @@ namespace ImagePS42
     {
       
         string nowFile { get; set; }
-        string path = @"D:\source\repos\BRP\RemoteControlTemp\bin\Debug\image";
+        string path = @"Image\";
         ImageEngine imageEngine=new ImageEngine();
         bool Is1080P=false;
         bool changePos { get; set; }
@@ -31,21 +32,21 @@ namespace ImagePS42
         
         private void Form1_Load(object sender, EventArgs e)
         {
-
-            /*
             DirectoryInfo dir = new DirectoryInfo(path);
 
             FileInfo[] files = dir.GetFiles();
-            foreach(FileInfo file in files)
+            foreach (FileInfo file in files)
             {
-                cameraList.Items.Add(file.Name);
+                cbImage.Items.Add(file.Name);
             }
-            if(files.Length>0)
+            if (files.Length > 0)
             {
                 nowFile = files[files.Length - 1].Name;
                 updatePicture();
-                cameraList.SelectedItem = nowFile;
+                cbImage.SelectedItem = nowFile;
             }
+            /*
+           
 
 
             try
@@ -91,6 +92,7 @@ namespace ImagePS42
             {
                 cameraList.Items.Add(process.MainWindowTitle + "," + process.Id);
             }
+            if(processes.Length>0)
             cameraList.SelectedIndex = 0;
 
 
@@ -833,6 +835,95 @@ namespace ImagePS42
         {
             int limit = int.Parse(textBoxThreshold.Text);
             pictureBox3.Image =Binaryzation((Bitmap)pictureBox3.Image,limit);
+        }
+
+        private void btnColorCompute_Click(object sender, EventArgs e)
+        {
+            var data = tbColorRange.Text.Split(',');
+            Rectangle sourceRect = new Rectangle(int.Parse(data[0]), int.Parse(data[1]), int.Parse(data[2]), int.Parse(data[3]));
+            int startX = Math.Min(sourceRect.X, sourceRect.Width);
+            int startY = Math.Min(sourceRect.Y, sourceRect.Height);
+            int width = Math.Abs(sourceRect.X - sourceRect.Width);
+            int height = Math.Abs(sourceRect.Y - sourceRect.Height);
+            sourceRect = new Rectangle(startX, startY, width, height);
+            Point point = imageEngine.KnownColor2Pos(((Bitmap)pictureBox1.Image).Clone(sourceRect, PixelFormat.Format24bppRgb), tbColor.Text, int.Parse(tbColorBais.Text));
+
+            tbColorPos.Text = point.X + "," + point.Y;
+
+
+
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+
+            nowFile = cbImage.Text;
+           string pathName = path + nowFile;
+           //pictureBox1.Load(pathName);
+           
+           try
+           {
+               FileStream fileStream = new FileStream(pathName, FileMode.Open, FileAccess.Read);
+               int byteLength = (int)fileStream.Length;
+               byte[] fileBytes = new byte[byteLength];
+               fileStream.Read(fileBytes, 0, byteLength);
+               //文件流关闭,文件解除锁定
+               fileStream.Close();
+               pictureBox1.Image = (Image.FromStream(new MemoryStream(fileBytes)));
+               imageEngine.SourceBmp = (Bitmap)pictureBox1.Image;
+           }
+           catch
+           {
+               Thread.Sleep(100);
+               try
+               {
+                   FileStream fileStream = new FileStream(pathName, FileMode.Open, FileAccess.Read);
+                   int byteLength = (int)fileStream.Length;
+                   byte[] fileBytes = new byte[byteLength];
+                   fileStream.Read(fileBytes, 0, byteLength);
+                   //文件流关闭,文件解除锁定
+                   fileStream.Close();
+                   pictureBox1.Image = (Image.FromStream(new MemoryStream(fileBytes)));
+                   imageEngine.SourceBmp = (Bitmap)pictureBox1.Image;
+               }
+               catch
+               {
+                   FileStream fileStream = new FileStream(pathName, FileMode.Open, FileAccess.Read);
+                   int byteLength = (int)fileStream.Length;
+                   byte[] fileBytes = new byte[byteLength];
+                   fileStream.Read(fileBytes, 0, byteLength);
+                   //文件流关闭,文件解除锁定
+                   fileStream.Close();
+                   pictureBox1.Image = (Image.FromStream(new MemoryStream(fileBytes)));
+                   imageEngine.SourceBmp = (Bitmap)pictureBox1.Image;
+
+               }
+
+           }
+           
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            string sPath = Directory.GetCurrentDirectory() + "\\template";
+            
+            if (!Directory.Exists(sPath))
+            {
+                Directory.CreateDirectory(sPath);
+            }
+            savePictureDialog.InitialDirectory = sPath;
+            savePictureDialog.Filter = "Bmp files (*.bmp)|*.bmp|All files (*.*)|*.*";
+            savePictureDialog.FileName = cbImage.Text + ".bmp";
+            DialogResult result = savePictureDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                if (tabControl1.SelectedIndex == 0)
+                    pictureBox2.Image.Save(savePictureDialog.FileName, System.Drawing.Imaging.ImageFormat.Bmp);
+                else
+                {
+                    pictureBox3.Image.Save(savePictureDialog.FileName, System.Drawing.Imaging.ImageFormat.Bmp);
+                }
+            }
         }
     }
 

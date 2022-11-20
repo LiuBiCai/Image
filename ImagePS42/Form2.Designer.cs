@@ -75,6 +75,19 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.hashBox = new System.Windows.Forms.TextBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnColorCompute = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbColorPos = new System.Windows.Forms.TextBox();
+            this.tbColor = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tbColorRange = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tbColorBais = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.cbImage = new System.Windows.Forms.ComboBox();
+            this.btnSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -83,6 +96,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // cameraList
@@ -188,6 +202,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(1401, 225);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -509,11 +524,136 @@
             this.hashBox.Size = new System.Drawing.Size(191, 21);
             this.hashBox.TabIndex = 28;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.tbColorBais);
+            this.tabPage4.Controls.Add(this.label13);
+            this.tabPage4.Controls.Add(this.btnColorCompute);
+            this.tabPage4.Controls.Add(this.label10);
+            this.tabPage4.Controls.Add(this.tbColorPos);
+            this.tabPage4.Controls.Add(this.tbColor);
+            this.tabPage4.Controls.Add(this.label11);
+            this.tabPage4.Controls.Add(this.tbColorRange);
+            this.tabPage4.Controls.Add(this.label12);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(328, 278);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "找色";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // btnColorCompute
+            // 
+            this.btnColorCompute.Location = new System.Drawing.Point(17, 120);
+            this.btnColorCompute.Name = "btnColorCompute";
+            this.btnColorCompute.Size = new System.Drawing.Size(75, 23);
+            this.btnColorCompute.TabIndex = 13;
+            this.btnColorCompute.Text = "计算";
+            this.btnColorCompute.UseVisualStyleBackColor = true;
+            this.btnColorCompute.Click += new System.EventHandler(this.btnColorCompute_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(15, 55);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(29, 12);
+            this.label10.TabIndex = 12;
+            this.label10.Text = "颜色";
+            // 
+            // tbColorPos
+            // 
+            this.tbColorPos.Location = new System.Drawing.Point(60, 83);
+            this.tbColorPos.Name = "tbColorPos";
+            this.tbColorPos.Size = new System.Drawing.Size(209, 21);
+            this.tbColorPos.TabIndex = 11;
+            // 
+            // tbColor
+            // 
+            this.tbColor.Location = new System.Drawing.Point(60, 53);
+            this.tbColor.Name = "tbColor";
+            this.tbColor.Size = new System.Drawing.Size(100, 21);
+            this.tbColor.TabIndex = 10;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(15, 86);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(29, 12);
+            this.label11.TabIndex = 9;
+            this.label11.Text = "位置";
+            // 
+            // tbColorRange
+            // 
+            this.tbColorRange.Location = new System.Drawing.Point(60, 13);
+            this.tbColorRange.Name = "tbColorRange";
+            this.tbColorRange.Size = new System.Drawing.Size(209, 21);
+            this.tbColorRange.TabIndex = 8;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(15, 22);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(29, 12);
+            this.label12.TabIndex = 7;
+            this.label12.Text = "坐标";
+            // 
+            // tbColorBais
+            // 
+            this.tbColorBais.Location = new System.Drawing.Point(210, 52);
+            this.tbColorBais.Name = "tbColorBais";
+            this.tbColorBais.Size = new System.Drawing.Size(59, 21);
+            this.tbColorBais.TabIndex = 15;
+            this.tbColorBais.Text = "10";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(165, 55);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(29, 12);
+            this.label13.TabIndex = 14;
+            this.label13.Text = "偏差";
+            // 
+            // btnLoad
+            // 
+            this.btnLoad.Location = new System.Drawing.Point(1348, 10);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(38, 23);
+            this.btnLoad.TabIndex = 30;
+            this.btnLoad.Text = "加载";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
+            // cbImage
+            // 
+            this.cbImage.FormattingEnabled = true;
+            this.cbImage.Location = new System.Drawing.Point(1137, 12);
+            this.cbImage.Name = "cbImage";
+            this.cbImage.Size = new System.Drawing.Size(205, 20);
+            this.cbImage.TabIndex = 29;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(1392, 9);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(39, 23);
+            this.btnSave.TabIndex = 31;
+            this.btnSave.Text = "保存";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1749, 811);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnLoad);
+            this.Controls.Add(this.cbImage);
             this.Controls.Add(this.hashBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label6);
@@ -544,6 +684,8 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -597,6 +739,19 @@
         private System.Windows.Forms.TextBox hashText;
         private System.Windows.Forms.TextBox textBoxThreshold;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TextBox tbColorBais;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button btnColorCompute;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox tbColorPos;
+        private System.Windows.Forms.TextBox tbColor;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox tbColorRange;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.ComboBox cbImage;
+        private System.Windows.Forms.Button btnSave;
     }
 }
 
